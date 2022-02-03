@@ -1,0 +1,135 @@
+{% extends 'main/base.html' %}"
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}Tj - cv Home{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+{% block content %}
+ <!-- ================================
+    Start Content
+    ================================= -->
+    <section>
+      <div class="bannerSection">
+        <div class="container">
+          <div class="row g-4 g-md-3  align-items-center">
+            <div class="col-md-auto order-md-last">
+              <div class="bannerUserImg">
+                {% if user.userprofile.avatar %}
+                <img src="{{user.userprofile.avatar.url}}" alt="...">
+                {%else%}
+                <img src="{% static 'images/profile.jpg' %}" alt="...">
+                {%endif%}
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="bannerContent">
+                <h1 class="xlTitle pb-3">Hi,{{user.first_name|title}} {{user.last_name|title}},</h1>
+                <p>Welcome to your profile , Here you can edit your information.</p>
+                <h2>You can also CONTACT ME using the link above to HIRE.</h2>
+                <h3>I hope You liked my work.</h3>
+                <div class="bannerBtnCol">
+                    <div class="row">
+                      <div class="col-auto">
+                        <a href="{% url 'main:logout' %}" class="btn btnOutline">Log Out</a>
+                        <a href="{% url 'main:editprofile' %}" class="btn btnOutline">Edit Profile</a>
+                        <a href="{% url 'main:password' %}" class="btn btnOutline">Change Password</a>
+                      </div>
+                      
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-7"></div>
+          <div class="col-2">
+            <a class="btn btn-success">Change</a>
+          </div>
+          <div class="col col-1"></div>
+          <div class="col-2">
+            <a class="btn btn-danger">Delete</a>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sectionSpace pt-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-auto">
+              <div class="keySkillCol">
+                <h4 class="smTitle pb-3">Key Skills</h4>
+                {% for sk in me.userprofile.skills.all %}
+                {% if sk.is_key_skill %}
+                <div class="keySkillCard">
+                  {% if sk.image %}
+                  <div class="ksIconCol">
+                    <img src="{{sk.image.url}}" alt="...">
+                  </div>
+                  {% endif %}
+                  <span class="ksText">{{sk.name}}</span>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="col-md">
+              <h4 class="smTitle pb-3">Coding Skills</h4>
+              <div class="progressCol">
+                <div class="progressCard">
+                  {% for sk in me.userprofile.skills.all %}
+                  {% if not sk.is_key_skill %}
+                  <div class="progressCol">
+                    <span class="progressLbl">{{sk.name}}</span>
+                    <div class="row g-2 align-items-center">
+                      <div class="col">
+                        <div class="progress progressStyle">
+                          <div class="progress-bar" role="progressbar" style="width: {{sk.score}}%" aria-valuenow="{{sk.score}}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-auto">
+                        <span class="pLbl">{{sk.score}}%</span>
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <!-- ================================
+    End Content
+    ================================= -->
+{% endblock %}   

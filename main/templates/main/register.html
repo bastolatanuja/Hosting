@@ -18,7 +18,7 @@ Start CSS blocks
 <!-- ================================
 END CSS blocks
 ================================= -->
-{% include 'main/partials/messages.html' %}
+
 <!-- ================================
 Start script blocks
 ================================= -->
@@ -26,7 +26,7 @@ Start script blocks
 <!-- ================================
 END script blocks
 ================================= -->
-
+{% include 'main/partials/messages.html' %}
 <!-- ================================
 Start Content
 ================================= -->
@@ -40,7 +40,9 @@ Start Content
           <div class="row g-4 g-md-3  align-items-center">
             <div class="col-md-6">
               <div class="bannerContent">
-                <h1 class="xlTitle pb-md-3">Contact us below</h1>
+                <h1 class="xlTitle pb-md-3">Sign Up To Hire</h1><br>
+                <h3 class="lgTitle pb-md-3 text-muted">Discover Blogs and </h3>
+                <h3 class="lgTitle pb-md-3 text-muted">Exclusive Portfolios </h3>
               </div>
             </div>
           </div>
@@ -51,19 +53,25 @@ Start Content
     <section>
       <div class="lightBg">
         <div class="container">
-            <form id="contactForm" method="POST" action="/contact/">
+            <form id="registrationForm" method="POST" action="/register/">
               {% csrf_token %}
-              <label for="name">Name</label>
-              {{form.name}}
-  
-              <label for="email">Email</label>
-              {{form.email}}
-  
-              <label for="subject">Message</label>
-              {{form.message}}
-  
-              <input class='btn btnPrimary' type="submit" value="Submit">
+              <input type="text" name="first_name" placeholder="First Name"><br>
+              <input type="text" name="last_name" placeholder="Last Name"><br>
+              <input type="text" name="username" placeholder="Username"><br>
+              <input type="email" name="email" placeholder="Email"><br>
+              <div class="row offset-1">
+              <input type="password" name="password1" placeholder="Password" class="col-3">
+              <div class="col-1"></div>
+              <input type="password" name="password2" placeholder="Confirm Password" class="col-3">
+              <div class="col-1"></div>
+              <input class='btn btnPrimary float-right col-3' type="submit" value="Submit">
+            </div>
             </form>
+            <div class="text-center mt-20">
+                <br>  
+                <a  id="login" href="{% url 'main:login' %}" class="btn  btnOutline d-block">Already a user? Login</a>  
+                <br>
+            </div>  
         </div>
       </div>
     </section>

@@ -1,4 +1,8 @@
+from re import template
+from unicodedata import name
 from django.urls import path
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import views as auth_view
 from . import views
 
 
@@ -11,4 +15,10 @@ urlpatterns = [
 	path('portfolio/<slug:slug>', views.PortfolioDetailView.as_view(), name="portfolio"),
 	path('blog/', views.BlogView.as_view(), name="blogs"),
 	path('blog/<slug:slug>', views.BlogDetailView.as_view(), name="blog"),
+	path('register/', views.RegisterView, name="register"),
+	path('login/',views.login,name="login"),
+	path('profile/',views.profileView,name="profile"),
+	path('logout/',views.logout, name="logout"),
+	path('editprofile/',views.editprofileView.as_view(),name="editprofile"),
+	path('password/',views.PasswordsChangeView.as_view(template_name='main/change-password.html'),name="password"),
 	]

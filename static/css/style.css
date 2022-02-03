@@ -39,6 +39,9 @@ body {
   padding-bottom: 6rem;
   line-height: normal;
 }
+a.center{
+  margin-top: 20px;
+}
 ul {
   margin: 0;
   padding: 0;

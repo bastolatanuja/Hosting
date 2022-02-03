@@ -18,7 +18,7 @@ Start CSS blocks
 <!-- ================================
 END CSS blocks
 ================================= -->
-{% include 'main/partials/messages.html' %}
+
 <!-- ================================
 Start script blocks
 ================================= -->
@@ -26,7 +26,7 @@ Start script blocks
 <!-- ================================
 END script blocks
 ================================= -->
-
+{% include 'main/partials/messages.html' %}
 <!-- ================================
 Start Content
 ================================= -->
@@ -40,7 +40,7 @@ Start Content
           <div class="row g-4 g-md-3  align-items-center">
             <div class="col-md-6">
               <div class="bannerContent">
-                <h1 class="xlTitle pb-md-3">Contact us below</h1>
+                <h1 class="xlTitle pb-md-3">Edit your Details</h1><br>
               </div>
             </div>
           </div>
@@ -51,19 +51,14 @@ Start Content
     <section>
       <div class="lightBg">
         <div class="container">
-            <form id="contactForm" method="POST" action="/contact/">
+            <form id="editForm" method="POST" action="/editprofile/">
               {% csrf_token %}
-              <label for="name">Name</label>
-              {{form.name}}
-  
-              <label for="email">Email</label>
-              {{form.email}}
-  
-              <label for="subject">Message</label>
-              {{form.message}}
-  
-              <input class='btn btnPrimary' type="submit" value="Submit">
-            </form>
+              {{form.as_p}}
+              
+              
+                
+                <button class="btn btn-secondary">Post</button>
+            </form><br>  
         </div>
       </div>
     </section>
