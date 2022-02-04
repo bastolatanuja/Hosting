@@ -61,4 +61,4 @@ class changeDpForm(forms.ModelForm):
 class blogForm(forms.ModelForm):
 	class Meta:
 		model = Blog
-		fields = ('name',)
+		fields = ('__all__')

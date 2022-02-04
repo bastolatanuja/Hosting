@@ -1,4 +1,5 @@
 from asyncio.format_helpers import _format_callback_source
+from msilib.schema import Media
 from multiprocessing import context
 from pyexpat import model
 from re import template
@@ -13,11 +14,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView 
 from .models import (
+		ContactProfile,
+		Skill,
 		UserProfile,
 		Blog,
 		Portfolio,
 		Testimonial,
-		Certificate
+		Certificate,
+		Media,
 	)
 
 from django.views import generic
@@ -209,4 +213,34 @@ def admin(request):
 
 
 def allBlogs(request):
-	return render(request,"main/editblog.html")
+	blogs = Blog.objects.all()
+	return render(request,"main/editblog.html",{'blogs':blogs})
+
+def allportfolio(request):
+	portfolios = Portfolio.objects.all()
+	return render(request,"main/allportfolios.html",{'portfolios':portfolios})
+
+def allcertificate(request):
+	certificates = Certificate.objects.all()
+	return render(request,"main/allcertificates.html",{'certificates':certificates})
+
+def allcontactprofile(request):
+	contactprofiles = ContactProfile.objects.all()
+	return render(request,"main/allcontactprofile.html",{'contactprofiles':contactprofiles})
+
+def allskill(request):
+	skills = Skill.objects.all()
+	return render(request,"main/allskill.html",{'skills':skills})
+
+def alltestimonial(request):
+	testimonials = Testimonial.objects.all()
+	return render(request,"main/alltestimonial.html",{'testimonials':testimonials})
+
+def alluserprofile(request):
+	userprofiles = UserProfile.objects.all()
+	return render(request,"main/alluserprofile.html",{'userprofiles':userprofiles})
+
+def allmedia(request):
+	medias = Media.objects.all()
+	return render(request,"main/allmedia.html",{'medias':medias})
+

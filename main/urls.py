@@ -28,4 +28,11 @@ urlpatterns = [
 	path('adminpanel/',views.admin,name="adminpanel"),
 	path('editsuperuser/',views.editprofileView.as_view(),name="editsuperuser"),
 	path('editblog/',views.allBlogs,name="editblog"),
+	path('allportfolios/',views.allportfolio,name="allportfolios"),
+	path('allcertificates/',views.allcertificate,name="allcertificates"),
+	path('allcontactprofiles/',views.allcontactprofile,name="allcontactprofiles"),
+	path('allskills/',views.allskill,name="allskills"),
+	path('alltestimonials/',views.alltestimonial,name="alltestimonials"),
+	path('alluserprofiles/',views.alluserprofile,name="alluserprofiles"),
+	path('allmedias/',views.allmedia,name="allmedias"),
 	]

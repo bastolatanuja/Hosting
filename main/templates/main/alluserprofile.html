@@ -51,35 +51,23 @@ Start Content
     <section>
       <div class="lightBg">
         <div class="container">
-            <div class="row">
-                <br>
-                <div><a href="{%url 'main:editsuperuser'%}" class="btn btnOutline col-12">User Details</a></div>
-            </div><br>
-            <div class="row">    
-                <div><a href="{%url 'main:editblog'%}" class="btn btnOutline col-12">Blog profile</a></div>
-            </div><br>
-            <div class="row">
-                <div><a href="{%url 'main:allcertificates'%}" class="btn btnOutline col-12">Certificates</a></div>
-            </div><br>
-            <div class="row">
-                <div><a href="{%url 'main:allcontactprofiles'%}" class="btn btnOutline col-12">Contact Profiles</a></div>
-            </div><br>
-            <div class="row">
-                <div><a href="{%url 'main:allmedias'%}" class="btn btnOutline col-12">Media Files</a></div>
-            </div><br>
-            <div class="row">
-                <div><a href="{%url 'main:allportfolios'%}" class="btn btnOutline col-12">Portfolio Profiles</a></div>
-            </div><br>
-            <div class="row">
-                <div><a href="{%url 'main:allskills'%}" class="btn btnOutline col-12">Skills</a></div>
-            </div><br>
-            <div class="row">
-                <div><a href="{%url 'main:alltestimonials'%}" class="btn btnOutline col-12">Testimonials</a></div>
-            </div><br>
-            <div class="row">
-                <div><a href="{%url 'main:alluserprofiles'%}" class="btn btnOutline col-12">User Profiles</a></div>
-            </div>
-            <br>  
+            <ul>
+                {% for item in userprofiles%}
+                <li>
+                    <div class="row">
+                        <div class="col col-4"><h4>{{item.user.username}}</h4> </div>
+                        <div class="col col-1"></div>
+                        <div class="col col-3"><a id="{{item.name}}" class="btn btn-primary">Edit</a></div>
+                        <div class="col col-1"></div>
+                        <div class="col col-3"><a id="{{item.name}}" class="btn btn-danger">Delete</a></div>
+                    </div>
+                    <br>
+                </li>
+                {%endfor%}
+            </ul>
+           
+           
+            
         </div>
       </div>
     </section>
