@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
 from django.urls import clear_script_prefix
-from .models import ContactProfile,User, UserProfile
+from .models import Blog, ContactProfile,User, UserProfile
 
 
 
@@ -57,3 +57,8 @@ class changeDpForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = '__all__'
+
+class blogForm(forms.ModelForm):
+	class Meta:
+		model = Blog
+		fields = ('name',)

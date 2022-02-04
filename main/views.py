@@ -7,7 +7,7 @@ from sre_constants import SUCCESS
 from xml.dom.expatbuilder import theDOMImplementation
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .forms import changeDpForm, editprofileForm
+from .forms import blogForm, changeDpForm, editprofileForm
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
@@ -164,6 +164,8 @@ class editprofileView(generic.UpdateView):
 
 
 
+
+
 class dpChangeView(generic.UpdateView):
 	template_name = "main/updateImage.html"
 	form_class = changeDpForm
@@ -201,3 +203,10 @@ def donate(request):
 		return render(request,"main/profile.html")
 	else:
 		return render(request,"main/donate.html")
+
+def admin(request):
+	return render(request,"main/adminpanel.html")
+
+
+def allBlogs(request):
+	return render(request,"main/editblog.html")

@@ -1,0 +1,68 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}Tj - cv ContactUs{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+{% include 'main/partials/messages.html' %}
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+    <!-- ================================
+    Start Content
+    ================================= -->
+    <section>
+      <div class="innerPageBannerCol">
+        <div class="container">
+          <div class="row g-4 g-md-3  align-items-center">
+            <div class="col-md-6">
+              <div class="bannerContent">
+                <h1 class="xlTitle pb-md-3">Edit your Details</h1><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="lightBg">
+        <div class="container">
+            <form id="editForm" method="POST" action="/editprofile/">
+              {% csrf_token %}
+              {{form.as_p}}
+              
+              
+                
+                <button class="btn btn-secondary">Post</button>
+            </form><br>  
+        </div>
+      </div>
+    </section>
+    <!-- ================================
+    End Content
+    ================================= -->
+    {%endblock%}

@@ -24,5 +24,8 @@ urlpatterns = [
 	path('changedp/',views.editDPView,name="changedp"),
 	path('updateDP/',views.dpChangeView.as_view(),name="updateDP"),
 	path('deletedp/',views.SetUserImageDefault,name="deletedp"),
-	path('donate/',views.donate,name="donate")
+	path('donate/',views.donate,name="donate"),
+	path('adminpanel/',views.admin,name="adminpanel"),
+	path('editsuperuser/',views.editprofileView.as_view(),name="editsuperuser"),
+	path('editblog/',views.allBlogs,name="editblog"),
 	]
