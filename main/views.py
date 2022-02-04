@@ -2,6 +2,7 @@ from asyncio.format_helpers import _format_callback_source
 from multiprocessing import context
 from pyexpat import model
 from re import template
+import re
 from sre_constants import SUCCESS
 from xml.dom.expatbuilder import theDOMImplementation
 from django.shortcuts import render,redirect
@@ -179,9 +180,11 @@ def editDPView(request):
 			obj = UserProfile.objects.get(user=user)
 			obj.avatar = newImage
 			obj.save()
-			return redirect("/")
+			return render(request,'main/profile.html')
 	else:
 		return render(request, 'main/updateImage.html')
 
-
-		
+def SetUserImageDefault(self):
+	self.user.userprofile.avatar.delete(save=True)
+	print(self.user.first_name)
+	return render(self,"main/profile.html")
