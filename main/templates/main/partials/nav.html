@@ -21,11 +21,17 @@
                     {% if user.is_authenticated%}
                     <li><a href="{%url 'main:portfolios' %}">Portfolio</a></li>
                     <li><a href="{% url 'main:blogs' %}">Blog</a></li>
+                    {% if user.is_superuser %}
+                    <li><a href="{% url 'main:logout' %}">Log Out</a></li>
+                    {%else%}
                     <li><a href="{%url 'main:contact'%}">Contact</a></li>
                     <li><a href="{%url 'main:profile'%}">My Profile</a></li>
-                    
+                    {%endif%}
                     {% else %}
+                    {% if user.is_superuser %}
+                    {%else%}
                     <li><a href="{%url 'main:register'%}">Hire Me</a></li>
+                    {%endif%}
                     {% endif %}
                     
                 </ul>

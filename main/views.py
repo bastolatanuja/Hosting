@@ -188,3 +188,16 @@ def SetUserImageDefault(self):
 	self.user.userprofile.avatar.delete(save=True)
 	print(self.user.first_name)
 	return render(self,"main/profile.html")
+
+def donate(request):
+	user = request.user
+	if request.method=='POST':
+		amount = request.POST['donation']
+		obj= UserProfile.objects.get(user=user)
+		
+		obj.donation = (int(0 if obj.donation is None else obj.donation) + int(amount))
+		obj.save()
+		print(obj.donation)
+		return render(request,"main/profile.html")
+	else:
+		return render(request,"main/donate.html")

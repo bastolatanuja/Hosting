@@ -23,5 +23,6 @@ urlpatterns = [
 	path('password/',views.PasswordsChangeView.as_view(template_name='main/change-password.html'),name="password"),
 	path('changedp/',views.editDPView,name="changedp"),
 	path('updateDP/',views.dpChangeView.as_view(),name="updateDP"),
-	path('deletedp/',views.SetUserImageDefault,name="deletedp")
+	path('deletedp/',views.SetUserImageDefault,name="deletedp"),
+	path('donate/',views.donate,name="donate")
 	]
