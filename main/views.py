@@ -1,11 +1,12 @@
 from asyncio.format_helpers import _format_callback_source
+from multiprocessing import context
 from pyexpat import model
 from re import template
 from sre_constants import SUCCESS
 from xml.dom.expatbuilder import theDOMImplementation
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .forms import editprofileForm
+from .forms import changeDpForm, editprofileForm
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
@@ -138,9 +139,9 @@ def logout(request):
 
 
 
-class EditProfileView(generic.UpdateView):
-	form_class = UserChangeForm
-	template_name = "main/editprofile.html"
+class ChangeDP(generic.UpdateView):
+	form_class = changeDpForm
+	template_name = "main/updateImage.html"
 	success_url = "/"
 
 	def get_object(self):
@@ -157,3 +158,30 @@ class editprofileView(generic.UpdateView):
 
 	def get_object(self):
 		return self.request.user
+
+
+
+
+
+class dpChangeView(generic.UpdateView):
+	template_name = "main/updateImage.html"
+	form_class = changeDpForm
+	success_url = "/"
+	
+	def get_object(self):
+		return self.request.user
+
+
+def editDPView(request):
+	user = request.user
+	if request.method=='POST':
+			newImage = request.FILES['avatar']
+			obj = UserProfile.objects.get(user=user)
+			obj.avatar = newImage
+			obj.save()
+			return redirect("/")
+	else:
+		return render(request, 'main/updateImage.html')
+
+
+		

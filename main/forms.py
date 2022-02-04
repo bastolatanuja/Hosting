@@ -2,7 +2,7 @@ from dataclasses import fields
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
-from .models import ContactProfile,User
+from .models import ContactProfile,User, UserProfile
 
 
 
@@ -52,6 +52,7 @@ class editprofileForm(UserChangeForm):
 			}))
 	
 	
-	
-
-	
+class changeDpForm(forms.ModelForm):
+	class Meta:
+		model = UserProfile
+		fields = '__all__'
