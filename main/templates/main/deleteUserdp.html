@@ -54,7 +54,7 @@ Start Content
             <form method="POST" enctype="multipart/form-data" action="/delDp/">
               {% csrf_token %}
               <strong> Are you sure? </strong><br>
-              <button class="btn btn-secondary">Delete Picture</button><a href="">Cancel</a>
+              <button class="btn btn-secondary">Delete Picture</button><a class="btn btnOutline" href="{%url 'main:profile'%}">Cancel</a>
             </form>
          </div>
       </div>
