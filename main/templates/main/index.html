@@ -49,7 +49,7 @@ END script blocks
                       <a download href="{{me.userprofile.cv.url}}" class="btn btnPrimary">Download Resume</a>
                     </div>
                     <div class="col-auto">
-                      <a href="{% url 'main:contact' %}" class="btn btnOutline">{% if user.is_authenticated%} Contact {% endif %}</a>
+                      <a href="{% url 'main:contact' %}" class="btn btnOutline">{% if not user.is_superuser%} Contact {% endif %}</a>
                     </div>
                   </div>
                 </div>

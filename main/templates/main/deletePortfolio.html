@@ -40,7 +40,7 @@ Start Content
           <div class="row g-4 g-md-3  align-items-center">
             <div class="col-md-6">
               <div class="bannerContent">
-                <h1 class="xlTitle pb-md-3">Edit your Details</h1><br>
+                <h1 class="xlTitle pb-md-3">Delete {{item.title}}</h1><br>
               </div>
             </div>
           </div>
@@ -53,9 +53,8 @@ Start Content
         <div class="container">
             <form method="POST" enctype="multipart/form-data" >
               {% csrf_token %}
-              {{form.as_p}}
-              {{form.media}}
-              <button class="btn btn-secondary">Update</button>
+              <strong> Are you sure? </strong><br>
+              <button class="btn btn-secondary">Delete Blog</button>
             </form>
          </div>
       </div>

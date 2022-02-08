@@ -41,7 +41,7 @@ Start Content
             <div class="col-md-6">
               <div class="bannerContent">
                 <h1 class="xlTitle pb-md-3">Edit your Details</h1><br>
-                <a href="{%url 'main:addPortfolio'%}" class="btn btnOutline">Add PortFolio</a>
+                <a href="{%url 'main:addBlogs'%}" class="btn btnOutline">Add Blogs</a>
               </div>
             </div>
           </div>
@@ -54,22 +54,25 @@ Start Content
         <div class="container">
           <ul>
             {% for item in object_list %}
-             <li><a href="" class="btn btn-info col col-12"> Name : {{item.name}} 
-              <br>Description : {{item.description}}<br>
-              {% if item.is_active%}
-              Status - Active
-            {%else%}
-              Status - Inactive
-            {%endif%}</a></li>
-            <li>
-              <div class="container">
-                <div class="row">
-              <a href="{%url 'main:updatePortfolio' item.pk %}" class="btn btn-primary col col-6">Edit</a>
-              <a href="{%url 'main:deletePortfolio' item.pk %}" class="btn btn-danger col col-6">Delete</a>
-                </div>
-              </div>
+             <li><a href="" class="btn btn-info col col-12"> Blog name : {{item.name}} 
+               <br>
+               Blog Author - {{item.author}}<br>
+                {% if item.is_active%}
+                  Status - Active
+                {%else%}
+                  Status - Inactive
+                {%endif%}</a></li>
+                <li>
+                  <div class="container">
+                    <div class="row">
+                  <a href="{%url 'main:updateBlog' item.pk %}" class="btn btn-primary col col-6">Edit</a>
+                  <a href="{%url 'main:deleteBlog' item.pk%}" class="btn btn-danger col col-6">Delete</a>
+                    </div>
+                  </div>
 
-            </li><br>
+                </li>
+              <br>
+              
             {%endfor%}
         </ul>
         <nav aria-label="Page navigation example">

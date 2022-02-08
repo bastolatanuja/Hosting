@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
 from django.urls import clear_script_prefix
-from .models import Blog, ContactProfile,User, UserProfile
+from .models import Blog, Certificate, ContactProfile,User, UserProfile
 
 
 
@@ -62,3 +62,8 @@ class blogForm(forms.ModelForm):
 	class Meta:
 		model = Blog
 		fields = ('__all__')
+	
+class certificateForm(forms.ModelForm):
+	class Meta:
+		model = Certificate
+		fields= ('__all__')

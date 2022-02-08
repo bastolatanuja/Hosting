@@ -1,7 +1,9 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from ckeditor.fields import RichTextField
+from django.urls import reverse
 
 
 class Skill(models.Model):
@@ -16,6 +18,8 @@ class Skill(models.Model):
     
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse('main:allskills')
 
 class UserProfile(models.Model):
 
@@ -29,10 +33,11 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(Skill, blank=True)
     cv = models.FileField(blank=True, null=True, upload_to="cv")
-    donation = models.IntegerField(blank=True,null=True)
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
+    def get_absolute_url(self):
+        return reverse('main:home')
 
 
 class ContactProfile(models.Model):
@@ -66,6 +71,8 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse('main:home')
 
 
 class Media(models.Model):
@@ -86,6 +93,8 @@ class Media(models.Model):
         super(Media, self).save(*args, **kwargs)
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse('main:allmedias')
 
 class Portfolio(models.Model):
 
@@ -155,5 +164,8 @@ class Certificate(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('main:home')
 
 

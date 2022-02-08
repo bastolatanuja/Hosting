@@ -51,20 +51,25 @@ Start Content
     <section>
       <div class="lightBg">
         <div class="container">
-            <ul>
-                {% for item in userprofiles%}
-                <li>
-                    <div class="row">
-                        <div class="col col-4"><h4>{{item.user.username}}</h4> </div>
-                        <div class="col col-1"></div>
-                        <div class="col col-3"><a id="{{item.name}}" class="btn btn-primary">Edit</a></div>
-                        <div class="col col-1"></div>
-                        <div class="col col-3"><a id="{{item.name}}" class="btn btn-danger">Delete</a></div>
-                    </div>
-                    <br>
-                </li>
-                {%endfor%}
-            </ul>
+          <ul>
+            {% for item in object_list %}
+             {% if item.user.is_superuser%}
+             <li><a href="" class="btn btn-info col col-12"> 
+              User : {{item.user.username}}
+
+            </a></li>
+            <li>
+             <div class="container">
+               <div class="row">
+             <a href="{%url 'main:updateUserProfile' item.pk %}" class="btn btn-primary col col-12">Edit</a>
+             
+               </div>
+             </div>
+
+           </li><br>
+             {%endif%}
+            {%endfor%}
+        </ul>
            
            
             

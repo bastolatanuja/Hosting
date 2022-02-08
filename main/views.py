@@ -1,18 +1,26 @@
 from asyncio.format_helpers import _format_callback_source
-from msilib.schema import Media
+from dataclasses import field
+from decimal import Clamped
+from msilib.schema import ListView, Media
 from multiprocessing import context
 from pyexpat import model
 from re import template
-import re
 from sre_constants import SUCCESS
+from statistics import mode
+from urllib import request
 from xml.dom.expatbuilder import theDOMImplementation
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .forms import blogForm, changeDpForm, editprofileForm
+from django.urls import reverse_lazy
+from .forms import blogForm, certificateForm, changeDpForm, editprofileForm
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserChangeForm,PasswordChangeForm
-from django.contrib.auth.views import PasswordChangeView 
+from django.contrib.auth.views import PasswordChangeView
+from django.core.mail import send_mail 
+
+#import pagination things
+from django.core.paginator import Paginator
 from .models import (
 		ContactProfile,
 		Skill,
@@ -28,6 +36,7 @@ from django.views import generic
 
 
 from . forms import ContactForm
+
 
 
 class IndexView(generic.TemplateView):
@@ -54,9 +63,22 @@ class ContactView(generic.FormView):
 	success_url = "/"
 	
 	def form_valid(self, form):
+		name = self.request.POST.get('name')
+		email = self.request.POST.get('email')
+		message = self.request.POST.get('message')
+		
+		send_mail(
+			'Message From' + name,
+			message,
+			email,
+			['tanujabastola143@gmail.com',],
+			fail_silently=False,
+		)
+
 		form.save()
-		messages.success(self.request, 'Thank you. We will be in touch soon.')
+		messages.success(self.request, 'Thank you.We received your message. We will be in touch soon.')
 		return super().form_valid(form)
+	
 
 
 class PortfolioView(generic.ListView):
@@ -209,12 +231,11 @@ def donate(request):
 		return render(request,"main/donate.html")
 
 def admin(request):
+	
 	return render(request,"main/adminpanel.html")
 
 
-def allBlogs(request):
-	blogs = Blog.objects.all()
-	return render(request,"main/editblog.html",{'blogs':blogs})
+
 
 def allportfolio(request):
 	portfolios = Portfolio.objects.all()
@@ -228,19 +249,161 @@ def allcontactprofile(request):
 	contactprofiles = ContactProfile.objects.all()
 	return render(request,"main/allcontactprofile.html",{'contactprofiles':contactprofiles})
 
-def allskill(request):
-	skills = Skill.objects.all()
-	return render(request,"main/allskill.html",{'skills':skills})
 
-def alltestimonial(request):
-	testimonials = Testimonial.objects.all()
-	return render(request,"main/alltestimonial.html",{'testimonials':testimonials})
 
-def alluserprofile(request):
-	userprofiles = UserProfile.objects.all()
-	return render(request,"main/alluserprofile.html",{'userprofiles':userprofiles})
 
-def allmedia(request):
-	medias = Media.objects.all()
-	return render(request,"main/allmedia.html",{'medias':medias})
 
+
+
+
+
+class testView(generic.ListView):
+	model = Certificate
+	template_name = "main/allcertificates.html"
+	paginate_by =2
+
+
+
+class addCertificateView(generic.CreateView):
+	model = Certificate
+	template_name = "main/addCertificate.html"
+	fields = '__all__'
+
+
+class allBlogsView(generic.ListView):
+	model = Blog
+	template_name = "main/allblogs.html"
+	paginate_by = 2
+
+class addBlogView(generic.CreateView):
+	model = Blog
+	template_name = "main/addBlog.html"
+	fields = ('author','name','description','body','image','is_active')
+
+class allContactProfiles(generic.ListView):
+	model = ContactProfile
+	template_name = "main/allContactProfiles.html"
+	paginate_by =2
+	
+	
+	
+class contactDetailView(generic.DetailView):
+	model = ContactProfile
+	template_name = "main/contactDetails.html" 
+	fields = '__all__'
+
+class allMedias(generic.ListView):
+	model = Media
+	template_name = "main/allmedia.html"
+	paginate_by = 1
+	
+	
+
+class allPortfolioView(generic.ListView):
+	model = Portfolio
+	template_name = "main/allportfolios.html"
+	paginate_by =2
+
+class allSkill(generic.ListView):
+	model = Skill
+	template_name = "main/allskill.html"
+	paginate_by = 2
+
+class allTestimonial(generic.ListView):
+	model = Testimonial
+	template_name = "main/alltestimonial.html"
+	paginate_by =2
+
+class allUserProfiles(generic.ListView):
+	model = UserProfile
+	template_name = "main/alluserprofile.html"
+
+class addMediaView(generic.CreateView):
+	model = Media
+	template_name = "main/addMedia.html"
+	fields = '__all__'
+
+class addPortfolio(generic.CreateView):
+	model = Portfolio
+	template_name = "main/addPortfolio.html"
+	fields = ('date','name','description','body','image','is_active')
+
+class addSkill(generic.CreateView):
+	model = Skill
+	template_name = "main/addskill.html"
+	fields = '__all__'
+
+class addTestimonial(generic.CreateView):
+	model = Testimonial
+	template_name = "main/addTestimonial.html"
+	fields = '__all__'
+
+class updateBlogView(generic.UpdateView):
+	model = Blog
+	template_name = "main/editBlog.html"
+	fields = ['author','name','description','body','image','is_active']
+
+class updateCertificateView(generic.UpdateView):
+	model = Certificate
+	template_name = "main/editCertificate.html"
+	fields = '__all__'
+
+class updateMedia(generic.UpdateView):
+	model = Media
+	template_name = "main/editMedia.html"
+	fields = '__all__'
+
+class updatePortfolio(generic.UpdateView):
+	model = Portfolio
+	template_name = "main/editPortfolio.html"
+	fields = ('date','name','description','body','image','is_active')
+
+class updateSkill(generic.UpdateView):
+	model = Skill
+	template_name = "main/editSkill.html"
+	fields = '__all__'
+
+class updateTestimonial(generic.UpdateView):
+	model = Testimonial
+	template_name = "main/editTestimonial.html"
+	fields = '__all__'
+
+class updateUserProfile(generic.UpdateView):
+	model = UserProfile
+	template_name = "main/editUserProfile.html"
+	fields = '__all__'
+
+class deleteBlogView(generic.DeleteView):
+	model = Blog
+	template_name = "main/deleteblog.html"
+	success_url = reverse_lazy('main:allblogs')
+
+class deleteCertificate(generic.DeleteView):
+	model = Certificate
+	template_name = "main/deleteCertificate.html"
+	success_url = reverse_lazy('main:allcertificates')
+
+class deleteContactView(generic.DeleteView):
+	model = ContactProfile
+	template_name = "main/deleteContactProfile.html"
+	success_url = reverse_lazy('main:allContactProfiles')
+
+class deleteMediaView(generic.DeleteView):
+	model = Media
+	template_name = "main/deleteMedia.html"
+	success_url = reverse_lazy('main:allmedias')
+
+class deletePortfolioView(generic.DeleteView):
+	model = Portfolio
+	template_name = "main/deletePortfolio.html"
+	success_url = reverse_lazy('main:allportfolios')
+
+class deleteSkillView(generic.DeleteView):
+	model = Skill
+	template_name = "main/deleteskills.html"
+	success_url = reverse_lazy('main:allskills')
+
+class deleteTestimonialView(generic.DeleteView):
+	model = Testimonial
+	template_name = "main/deleteTestimonial.html"
+	success_url = reverse_lazy('main:alltestimonials')
