@@ -213,22 +213,18 @@ def editDPView(request):
 		return render(request, 'main/updateImage.html')
 
 def SetUserImageDefault(self):
-	self.user.userprofile.avatar.delete(save=True)
-	print(self.user.first_name)
-	return render(self,"main/profile.html")
+	user = self.user
+	#self.user.userprofile.avatar.delete(save=True)
+	return render(self,"main/deleteUserdp.html",{'user':user})
 
-def donate(request):
-	user = request.user
+def delDp(request):
 	if request.method=='POST':
-		amount = request.POST['donation']
-		obj= UserProfile.objects.get(user=user)
-		
-		obj.donation = (int(0 if obj.donation is None else obj.donation) + int(amount))
-		obj.save()
-		print(obj.donation)
+		request.user.userprofile.avatar.delete(save=True)
 		return render(request,"main/profile.html")
 	else:
-		return render(request,"main/donate.html")
+		return render(request,"main/deleteUserdp.html")
+
+
 
 def admin(request):
 	

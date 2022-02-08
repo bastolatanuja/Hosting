@@ -40,7 +40,7 @@ Start Content
           <div class="row g-4 g-md-3  align-items-center">
             <div class="col-md-6">
               <div class="bannerContent">
-                <h1 class="xlTitle pb-md-3">User Profiles</h1><br>
+                <h1 class="xlTitle pb-md-3">Delete {{item.title}}</h1><br>
               </div>
             </div>
           </div>
@@ -51,29 +51,12 @@ Start Content
     <section>
       <div class="lightBg">
         <div class="container">
-          <ul>
-            {% for item in object_list %}
-             {% if item.user.is_superuser%}
-             <li><a href="" class="btn btn-info col col-12"> 
-              User : {{item.user.username}}
-
-            </a></li>
-            <li>
-             <div class="container">
-               <div class="row">
-             <a href="{%url 'main:updateUserProfile' item.pk %}" class="btn btn-primary col col-12">Edit</a>
-             
-               </div>
-             </div>
-
-           </li><br>
-             {%endif%}
-            {%endfor%}
-        </ul>
-           
-           
-            
-        </div>
+            <form method="POST" enctype="multipart/form-data" action="/delDp/">
+              {% csrf_token %}
+              <strong> Are you sure? </strong><br>
+              <button class="btn btn-secondary">Delete Picture</button><a href="">Cancel</a>
+            </form>
+         </div>
       </div>
     </section>
     <!-- ================================
