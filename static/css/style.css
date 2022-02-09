@@ -38,6 +38,7 @@ body {
   -webkit-font-smoothing : antialiased;
   padding-bottom: 6rem;
   line-height: normal;
+  
 }
 a.center{
   margin-top: 20px;
@@ -467,6 +468,7 @@ a, .btn {
 	border-radius: 50%;
 }
 
+
 .swiper-button-next.swiperBtnStyle::after, .swiper-button-prev.swiperBtnStyle::after {
   font-size: 16px;
 }
@@ -521,7 +523,8 @@ body.navToggleActive {
 
 /* portfolio page */
 .innerPageBannerCol {
-	padding: 180px 0 150px;
+	padding: 60px 0 80px;
+  
 }
 .portfolioContentMain {
   position: relative;
@@ -810,6 +813,3 @@ input[type=text], input[type=email], select, textarea {
   resize: vertical
 }
 
-div#topdiv.innerPageBannerCol{
-  background-color: #1ecab8;
-}

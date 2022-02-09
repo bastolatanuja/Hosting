@@ -30,6 +30,8 @@ END script blocks
  <!-- ================================
     Start Content
     ================================= -->
+   
+   
     <section>
       <div class="bannerSection">
         <div class="container">
@@ -49,7 +51,7 @@ END script blocks
                       <a download href="{{me.userprofile.cv.url}}" class="btn btnPrimary">Download Resume</a>
                     </div>
                     <div class="col-auto">
-                      <a href="{% url 'main:contact' %}" class="btn btnOutline">{% if not user.is_superuser%} Contact {% endif %}</a>
+                      {% if not user.is_superuser%}<a href="{% url 'main:contact' %}" class="btn btnOutline"> Contact</a> {% endif %}
                     </div>
                   </div>
                 </div>
