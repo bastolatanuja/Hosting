@@ -9,7 +9,8 @@ font-family: 'Heebo', sans-serif; */
   --medium: 500;
   --bold: 700;
   --black: 900;
-  --lightBg: #F1F1F1;
+  --lightBg: rgb(172, 212, 174);
+
 
   --primary : #1a253f;
   --dark : #151A33;
@@ -36,7 +37,7 @@ body {
   background:var(--primary);
   color: var(--ternary);
   -webkit-font-smoothing : antialiased;
-  padding-bottom: 6rem;
+  padding-bottom: 1rem;
   line-height: normal;
   
 }
@@ -318,7 +319,7 @@ a, .btn {
 
 .sectionSpace {
   background: var(--dark);
-  padding: 80px 0;
+  padding: 40px 0;
 }
 .sectionSpaceSm {
   background: var(--mild);
@@ -495,7 +496,7 @@ body.navToggleActive {
 
 /* footer */
 .footerCol {
-  padding: 50px 0;
+  padding: 10px 0;
   text-align: center;
 }
 .socialCol li {
@@ -512,7 +513,7 @@ body.navToggleActive {
 }
 .copyrightCol {
   color: var(--footer);
-	padding: 20px 0 0;
+	padding: 10px 0 0;
   font-size: 14px;
 }
 .copyrightCol p {
