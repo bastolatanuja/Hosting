@@ -304,6 +304,7 @@ class allSkill(generic.ListView):
 	model = Skill
 	template_name = "main/allskill.html"
 	paginate_by = 2
+	ordering=['id']
 
 class allTestimonial(generic.ListView):
 	model = Testimonial
