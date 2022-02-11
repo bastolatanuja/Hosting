@@ -79,13 +79,40 @@ WSGI_APPLICATION = 'cv.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
+# Use SQLite Database
+DATABASE = 2
+if DEBUG and (DATABASE == 1):
+# Use SQLite Database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+elif DEBUG and (DATABASE == 2):
+# Use Local Postgres Dtabase
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            # set database name
+            'NAME': 'Portfolio',
+            # set your user details
+            'USER': 'postgres',
+            'PASSWORD': '1590',
+            'HOST': 'localhost',
+            'POST': '5432'
+        }
+    }
+else:
+# Use Production Dtabase e.g Postgres
+# Using SQLite Database for demonstration
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
