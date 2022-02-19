@@ -4,7 +4,7 @@
 <!-- ================================
 Start SEO blocks
 ================================= -->
-{% block title %}Tj - cv ContactUs{% endblock %}
+{% block title %}Tj - cv register{% endblock %}
 {% block decription %}{% endblock %}
 {% block keywords %}{% endblock %}
 <!-- ================================
@@ -55,14 +55,14 @@ Start Content
         <div class="container">
             <form id="registrationForm" method="POST" action="/register/">
               {% csrf_token %}
-              <input type="text" name="first_name" placeholder="First Name"><br>
-              <input type="text" name="last_name" placeholder="Last Name"><br>
-              <input type="text" name="username" placeholder="Username"><br>
-              <input type="email" name="email" placeholder="Email"><br>
+              <input type="text" name="first_name" placeholder="First Name" required><br>
+              <input type="text" name="last_name" placeholder="Last Name" required><br>
+              <input type="text" name="username" placeholder="Username" required><br>
+              <input type="email" name="email" placeholder="Email" required><br>
               <div class="row offset-1">
-              <input type="password" name="password1" placeholder="Password" class="col-3">
+              <input type="password" name="password1" placeholder="Password" class="col-3" required>
               <div class="col-1"></div>
-              <input type="password" name="password2" placeholder="Confirm Password" class="col-3">
+              <input type="password" name="password2" placeholder="Confirm Password" class="col-3" required>
               <div class="col-1"></div>
               <input class='btn btnPrimary float-right col-3' type="submit" value="Submit">
             </div>
