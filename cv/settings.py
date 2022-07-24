@@ -95,7 +95,7 @@ elif DEBUG and (DATABASE == 2):
 # Use Local Postgres Dtabase
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             # set database name
             'NAME': 'd63esc0n53b5ks',
             # set your user details
