@@ -90,9 +90,9 @@ class TestViews(TestCase):
 
     def test_delete_skill_view(self):
         client = Client()
-        user = auth.authenticate(username='tanuja',password='xxxabc123')
+        user = auth.authenticate(username='tanuja',password='xxxabc1234')
         newSkill = Skill.objects.create(name = 'testSkill', score = 90)
-        url = reverse('main:deleteSkill',args=[newSkill.id])
+        url = reverse('main:deleteSkill',args=[newSkill.name])
         response=client.delete(url)
         self.assertEquals(response.status_code,302)
         self.assertRedirects(response,'/allskills/')

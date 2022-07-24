@@ -268,7 +268,7 @@ class addCertificateView(generic.CreateView):
 
 class allBlogsView(generic.ListView):
 	model = Blog
-	template_name = "main/allblogs.html"
+	template_name = "Home/allblogs.html"
 	paginate_by = 2
 
 class addBlogView(generic.CreateView):
@@ -322,7 +322,7 @@ class addMediaView(generic.CreateView):
 
 class addPortfolio(generic.CreateView):
 	model = Portfolio
-	template_name = "main/addPortfolio.html"
+	template_name = "Home/addPortfolio.html"
 	fields = ('date','name','description','body','image','is_active')
 
 class addSkill(generic.CreateView):

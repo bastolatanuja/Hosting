@@ -48,7 +48,7 @@ END script blocks
                 <div class="bannerBtnCol">
                   <div class="row">
                     <div class="col-auto">
-                      <a download href="{{me.userprofile.cv.url}}" class="btn btnPrimary">Download Resume</a>
+                      <a download href="{{me.userprofile.cv.url}}" class="btn btnPrimary">Download invoice</a>
                     </div>
                     <div class="col-auto">
                       {% if not user.is_superuser%}<a href="{% url 'main:contact' %}" class="btn btnOutline"> Contact</a> {% endif %}

@@ -1,0 +1,43 @@
+data types:
+Character-''
+example 'tanuja'
+
+numeric-as.numeric is way to write.
+it include all types of numeric value
+
+Integer- includes only positive value.
+example- a=1l (denoted as integer in R)
+
+complex-it includes real ande imaginary value.
+example-1+5j
+
+logical- it includes logical value as true false.
+
+data objects:
+types;
+
+1)vector(can include only one value)
+2)list(all values included as vectors or more)
+3)Matirixs
+4)index
+5)arrays(combination of matrixes)
+6)data frame(tabular form data)
+7)operators(3 types of operator[arithmetic, logical,relation])
+
+
+note:
+%%= reminder 				%/%=integer division
+
+!=logical not			&=element wise logical and   &&=logical And
+|=element wise logical or 		||=logical or
+
+operators & and | perform elemet-wise operation producing reslut having length
+of the longer operand.
+
+but && and || examines only thefirst element of the operands resulting into
+a single ledngth logical vector.
+
+Zero is considered FALSE and non-zero number are taken as TRUE.
+examples:
+logic_a=c(TRUE, FALSE, 0, 100)
+logic_b=c(FALSE, TRUE,FALSE,TRUE)

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-_9-3u!04&in@*4wz!_j$b*q%_xqf=toa@&_*d7a#76biihvx7%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cv.herokuapp.com']
 
 
 # Application definition
@@ -96,12 +97,12 @@ elif DEBUG and (DATABASE == 2):
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             # set database name
-            'NAME': 'Portfolio',
+            'NAME': 'd63esc0n53b5ks',
             # set your user details
-            'USER': 'postgres',
-            'PASSWORD': '1590',
-            'HOST': 'localhost',
-            'POST': '5432'
+            'USER': 'kdqufssbuimino',
+            'PASSWORD': 'e4557536b33f5144781618134b0d6d9b0a8f4dc9f3bdd33c022de3fec2fce600',
+            'HOST': 'ec2-34-247-172-149.eu-west-1.compute.amazonaws.com',
+            'PORT': '5432'
         }
     }
 else:
@@ -155,6 +156,7 @@ STATICFILES_DIRS = [
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+django_heroku.settings(locals())
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "mediafiles"
